@@ -14,6 +14,7 @@ namespace MazeGen
 
         public MazeGenerator(int height, int width)
         {
+            //Inicializa el tamaño de los arreglos
             this.maze = new int[height, width];
             this.height = height;
             this.width = width;
@@ -21,6 +22,10 @@ namespace MazeGen
         }
         private void FillArray(ref int[,] array)
         {
+            //Crea varios nodos rodeado por paredes
+            //2 2 2
+            //2 0 2
+            //2 2 2
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
@@ -55,8 +60,10 @@ namespace MazeGen
             }
         }
         public void generateMaze(int CellY, int CellX) {
-//Print();
-            //Console.Clear();
+            //Crea una lista de vecinos, sirve para siempre llame las 4 direcciones
+            //aleatoriamente sin repetir.
+            //Haciendo un DFS con direcciones random se pasea por todos los nodos
+            //creando las paredes del laberinto
             List<int> pool = new List<int>{0,1,2,3};
             maze[CellY,CellX] = 0;
             for (int i = 0; i < 4; i++)
@@ -93,6 +100,7 @@ namespace MazeGen
         }
         private bool checkVisited(int CellY, int CellX)
         {
+            //Mira si se salió de los bordes o si ya pasó por un nodo
             if (CellY < 0 || CellY > height-1)
             {
                 return true;
@@ -109,6 +117,8 @@ namespace MazeGen
         }
         private int randomDirection(ref List<int> pool)
         {
+            //Elige una de cuatro direcciones, se asegura que la siguiente
+            //no haya sido escogida previamente
             Random direction = new Random(Guid.NewGuid().GetHashCode());
             int random = direction.Next(0,pool.Count());
             int poolNumber = pool[random];
