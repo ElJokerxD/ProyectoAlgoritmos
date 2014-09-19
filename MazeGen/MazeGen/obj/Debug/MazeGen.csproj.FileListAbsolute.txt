@@ -1,6 +1,0 @@
-c:\users\jamil\documents\visual studio 2012\Projects\MazeGen\MazeGen\bin\Debug\MazeGen.exe.config
-c:\users\jamil\documents\visual studio 2012\Projects\MazeGen\MazeGen\obj\Debug\MazeGen.csprojResolveAssemblyReference.cache
-c:\users\jamil\documents\visual studio 2012\Projects\MazeGen\MazeGen\bin\Debug\MazeGen.exe
-c:\users\jamil\documents\visual studio 2012\Projects\MazeGen\MazeGen\bin\Debug\MazeGen.pdb
-c:\users\jamil\documents\visual studio 2012\Projects\MazeGen\MazeGen\obj\Debug\MazeGen.exe
-c:\users\jamil\documents\visual studio 2012\Projects\MazeGen\MazeGen\obj\Debug\MazeGen.pdb
