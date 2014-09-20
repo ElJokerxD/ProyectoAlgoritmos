@@ -12,7 +12,7 @@ namespace MazeGen
         {
             Console.SetWindowSize(120, 60);
             MazeGenerator maze = new MazeGenerator(51,101);
-            maze.generateMaze(1,1);
+            int[,] playArea = maze.generateMaze(1, 1);
             maze.Print();
         }
     }

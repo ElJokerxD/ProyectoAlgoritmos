@@ -59,7 +59,12 @@ namespace MazeGen
                 System.Console.WriteLine();
             }
         }
-        public void generateMaze(int CellY, int CellX) {
+        public int[,] generateMaze(int CellY, int CellX)
+        {
+            _generateMaze(CellY, CellX);
+            return maze;                
+        }
+        private void _generateMaze(int CellY, int CellX) {
             //Crea una lista de vecinos, sirve para siempre llame las 4 direcciones
             //aleatoriamente sin repetir.
             //Haciendo un DFS con direcciones random se pasea por todos los nodos
