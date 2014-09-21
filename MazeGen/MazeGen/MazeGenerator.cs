@@ -18,7 +18,6 @@ namespace MazeGen
             this.maze = new int[height, width];
             this.height = height;
             this.width = width;
-            FillArray(ref maze);
         }
         private void FillArray(ref int[,] array)
         {
@@ -61,6 +60,7 @@ namespace MazeGen
         }
         public int[,] generateMaze(int CellY, int CellX)
         {
+            FillArray(ref maze);
             _generateMaze(CellY, CellX);
             return maze;                
         }
@@ -79,25 +79,25 @@ namespace MazeGen
                         if (!checkVisited(CellY, CellX - 2))
                         {
                             maze[CellY, CellX - 1] = 0; 
-                            generateMaze(CellY, CellX - 2);
+                            _generateMaze(CellY, CellX - 2);
                         }
                         break;
                     case 1:
                         if (!checkVisited(CellY - 2,CellX)) {
                             maze[CellY - 1, CellX] = 0;                      
-                            generateMaze(CellY - 2, CellX);
+                            _generateMaze(CellY - 2, CellX);
                         }
                         break;
                     case 2:
                         if (!checkVisited(CellY,CellX + 2)) {
                             maze[CellY, CellX + 1] = 0; 
-                            generateMaze(CellY, CellX + 2);
+                            _generateMaze(CellY, CellX + 2);
                         }
                         break;
                     case 3:
                         if (!checkVisited(CellY + 2 ,CellX)) {
                             maze[CellY + 1, CellX] = 0; 
-                            generateMaze(CellY + 2, CellX);
+                            _generateMaze(CellY + 2, CellX);
                         }
                         break;
                 }
