@@ -10,8 +10,9 @@ namespace MazeGen
     public class MazeGenerator
     {
         private int[,] maze;
-        private int height;
-        private int width;
+        public int height { get; set; }
+        public int width { get; set; }
+        MazeRenderer renderer = new MazeRenderer();
 
         public MazeGenerator(int height, int width)
         {
@@ -133,17 +134,7 @@ namespace MazeGen
         }
         public void draw(BufferedGraphics buffer)
         {
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    if (maze[i, j] == 2)
-                    {
-                        buffer.Graphics.FillRectangle(Brushes.White, new Rectangle(20 * i, 20 * j, 20, 20));
-                    }
-                }
-            }
+            renderer.draw(this, buffer, maze);
         }
     }
 }
-
