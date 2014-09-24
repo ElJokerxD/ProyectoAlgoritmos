@@ -1,18 +1,24 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-
+using System.IO;
 namespace MazeGen
 {
     public class MazeGenerator
     {
         private int[,] maze;
-        public int height { get; set; }
-        public int width { get; set; }
-        MazeRenderer renderer = new MazeRenderer();
+        private int height;
+        private int width;
+        Image Image1;
+        Image Image2;
+        Image Image3;
+        Image Image4;
+        /// Player
+        private int posi;
+        private int posj;
 
         public MazeGenerator(int height, int width)
         {
@@ -20,6 +26,15 @@ namespace MazeGen
             this.maze = new int[height, width];
             this.height = height;
             this.width = width;
+            Image2 = Image.FromFile(Directory.GetCurrentDirectory() +"\\piso.png");
+            Image1 = Image.FromFile(Directory.GetCurrentDirectory() + "\\pared.png");
+            Image3 = Image.FromFile(Directory.GetCurrentDirectory() + "\\pared1.png");
+            Image4 = Image.FromFile(Directory.GetCurrentDirectory() + "\\derecha1.png");            
+            //Inicializa la posicion del jugador
+            this.posj = ((height + 1) / 2);
+            this.posi = ((width + 1) / 2);
+            
+
         }
         private void FillArray(ref int[,] array)
         {
@@ -42,6 +57,57 @@ namespace MazeGen
                 }
             }
         }
+        public void PlayerSpaw(BufferedGraphics buffer)
+        {
+            for (int i = -1; i < 2; i++)
+            {
+                for (int j = -1; j < 2; j++)
+                {
+                    if (maze[posi + i, posj + j] == 0)
+                    {
+                        posi = posi + i;
+                        posj = posj + j;
+                        buffer.Graphics.DrawImage(Image4, new Rectangle(posi * 20, posj * 20, 20, 20));
+
+                        return;
+                    }
+                }
+            }
+        }
+        public void PlayerGenerator(BufferedGraphics buffer)
+        {
+
+            if (maze[posi, posj] != 0)
+                PlayerSpaw(buffer);
+
+        }
+        public void PlayerMove(int direction,BufferedGraphics buffer)
+        {
+            buffer.Graphics.DrawImage(Image2, new Rectangle(posi*20,posj*20, 20, 20));
+            switch (direction)
+            {
+                case 1:
+                    if (maze[posi, posj + 1] == 0)
+                        posj += 1;
+                    break;
+                case 2:
+                    if (maze[posi - 1, posj] == 0)
+                        posi -= 1;
+                    break;
+                case 3:
+                    if (maze[posi, posj - 1] == 0)
+                        posj -= 1;
+                    break;
+                case 4:
+                    if (maze[posi + 1, posj] == 0)
+                        posi += 1;
+                    break;
+                default:
+                    break;
+            }
+            buffer.Graphics.DrawImage(Image4, new Rectangle(posi * 20, posj * 20, 20, 20));
+
+        }
         public void Print()
         {
             for (int i = 0; i < height; i++)
@@ -62,7 +128,7 @@ namespace MazeGen
         }
         public int[,] generateMaze(int CellY, int CellX)
         {
-            FillArray(ref maze);
+            FillArray(ref maze);           
             _generateMaze(CellY, CellX);
             return maze;                
         }
@@ -134,7 +200,27 @@ namespace MazeGen
         }
         public void draw(BufferedGraphics buffer)
         {
-            renderer.draw(this, buffer, maze);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    if (maze[i, j] == 2)
+                    {
+                        if (j < 24 && maze[i, j + 1] == 0)
+                            buffer.Graphics.DrawImage(Image3, new Rectangle(20 * i, 20 * j, 20, 20));
+                        else
+                            buffer.Graphics.DrawImage(Image1, new Rectangle(20 * i, 20 * j, 20, 20));
+                    }
+                    else
+                    { buffer.Graphics.DrawImage(Image2, new Rectangle(20 * i, 20 * j, 20, 20));
+
+                    }                        
+                }
+
+            }
+
         }
     }
 }
+
