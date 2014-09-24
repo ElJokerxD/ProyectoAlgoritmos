@@ -10,11 +10,9 @@ namespace MazeGen
     public class MazeGenerator
     {
         private int[,] maze;
-<<<<<<< HEAD
         public int height { get; set; }
         public int width { get; set; }
         Renderer renderer = new Renderer();
-=======
         private int height;
         private int width;
         Image Image1;
@@ -24,7 +22,6 @@ namespace MazeGen
         /// Player
         private int posi;
         private int posj;
->>>>>>> origin/master
 
         public MazeGenerator(int height, int width)
         {
