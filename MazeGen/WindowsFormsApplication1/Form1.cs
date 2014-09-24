@@ -34,7 +34,7 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            game = new Game(myBuffer);
+            game = new Game();
             game.PlayerGenerator();
             game.PlayerSpaw();
         }

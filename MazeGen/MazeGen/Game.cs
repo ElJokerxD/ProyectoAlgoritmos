@@ -13,7 +13,7 @@ namespace MazeGen
         private Renderer renderer = new Renderer();
         private Personaje personaje = new Personaje(33,25);              
 
-        public Game(BufferedGraphics buffer) {
+        public Game() {
             maze.generateMaze(1, 1);
             PlayerGenerator();
             PlayerSpaw();
