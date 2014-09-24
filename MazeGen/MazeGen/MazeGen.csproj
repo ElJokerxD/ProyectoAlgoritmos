@@ -7,7 +7,7 @@
     <ProjectGuid>{B008EB8B-BDA8-4B13-BF48-C8487EA95D21}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MazeGen.objetos</RootNamespace>
+    <RootNamespace>MazeGen</RootNamespace>
     <AssemblyName>MazeGen</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -44,6 +44,11 @@
   <ItemGroup>
     <Compile Include="Game.cs" />
     <Compile Include="MazeGenerator.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Renderer.cs" />
     <Compile Include="Personaje.cs" />
     <Compile Include="Program.cs" />
@@ -51,6 +56,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\derecha1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pared.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pared1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piso.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

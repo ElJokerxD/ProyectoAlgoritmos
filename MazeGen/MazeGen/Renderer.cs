@@ -17,10 +17,10 @@ namespace MazeGen
 
         public Renderer()
         {
-            Image2 = Image.FromFile(Directory.GetCurrentDirectory() + "\\piso.png");
-            Image1 = Image.FromFile(Directory.GetCurrentDirectory() + "\\pared.png");
-            Image3 = Image.FromFile(Directory.GetCurrentDirectory() + "\\pared1.png");
-            Image4 = Image.FromFile(Directory.GetCurrentDirectory() + "\\derecha1.png");
+            Image2 = MazeGen.Properties.Resources.piso;
+            Image1 = MazeGen.Properties.Resources.pared;
+            Image3 = MazeGen.Properties.Resources.pared1;
+            Image4 = MazeGen.Properties.Resources.derecha1;
         }
 
         public void draw(Personaje personaje, BufferedGraphics buffer)
