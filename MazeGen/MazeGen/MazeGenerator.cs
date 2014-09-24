@@ -136,5 +136,9 @@ namespace MazeGen
         {
             renderer.draw(this, buffer, maze);
         }
+        public int[,] getMaze()
+        {
+            return maze;
+        }
     }
 }

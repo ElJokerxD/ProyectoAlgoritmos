@@ -15,8 +15,7 @@ namespace WindowsFormsApplication1
     {
         BufferedGraphicsContext currentContext;
         BufferedGraphics myBuffer;
-        MazeGenerator maze = new MazeGenerator(33,25);
-
+        Game game;
         public Form1()
         {
             InitializeComponent();
@@ -25,14 +24,28 @@ namespace WindowsFormsApplication1
         {
             using (currentContext = BufferedGraphicsManager.Current)
             using (myBuffer = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle)) {
-                    maze.draw(myBuffer);
+                    game.draw(myBuffer);
+                    game.PlayerSpaw(myBuffer);
+
                     myBuffer.Render(this.CreateGraphics());
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            maze.generateMaze(1, 1);
+            game = new Game(myBuffer);
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+                game.PlayerMove(3, myBuffer);
+            if (e.KeyCode == Keys.Left)
+                game.PlayerMove(2, myBuffer);
+            if (e.KeyCode == Keys.Down)
+                game.PlayerMove(1, myBuffer);
+            if (e.KeyCode == Keys.Right)
+                game.PlayerMove(4, myBuffer);
         }
     }
 }
