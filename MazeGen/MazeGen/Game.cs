@@ -10,24 +10,24 @@ namespace MazeGen
     public class Game
     {
         private MazeGenerator maze = new MazeGenerator(33, 25);
-        private Renderer renderer = new Renderer();
-        private Personaje personaje = new Personaje(33,25);              
+        private MazeRenderer renderer = new MazeRenderer();
+        private Personaje personaje = new Personaje(33,25);
+              
 
         public Game(BufferedGraphics buffer) {
             maze.generateMaze(1, 1);
-            PlayerGenerator();
-            PlayerSpaw();
+            //PlayerGenerator(buffer);
+            //PlayerSpaw(buffer);
         }
         public void update(BufferedGraphics buffer) {
-            PlayerSpaw();
+            PlayerSpaw(buffer);
         }
         public void draw(BufferedGraphics buffer)
         {
-            maze.draw(buffer);
-            personaje.draw(buffer);
+            renderer.draw(maze, buffer, maze.getMaze());
         }
 
-        public void PlayerSpaw()
+        public void PlayerSpaw(BufferedGraphics buffer)
         {
             for (int i = -1; i < 2; i++)
             {
@@ -37,22 +37,25 @@ namespace MazeGen
                     {
                         personaje.posi = personaje.posi + i;
                         personaje.posj = personaje.posj + j;
+                        buffer.Graphics.DrawImage(personaje.Image4, new Rectangle(personaje.posi * 20, personaje.posj * 20, 20, 20));
+
                         return;
                     }
                 }
             }
         }
-        public void PlayerGenerator()
+        public void PlayerGenerator(BufferedGraphics buffer)
         {
 
             if (maze.getMaze()[personaje.posi, personaje.posj] != 0)
             {
-                PlayerSpaw();
+                PlayerSpaw(buffer);
             }
 
         }
-        public void PlayerMove(int direction)
+        public void PlayerMove(int direction, BufferedGraphics buffer)
         {
+            buffer.Graphics.DrawImage(personaje.Image4, new Rectangle(personaje.posi * 20, personaje.posj * 20, 20, 20));
             switch (direction)
             {
                 case 1:
@@ -74,6 +77,7 @@ namespace MazeGen
                 default:
                     break;
             }
+            buffer.Graphics.DrawImage(personaje.Image4, new Rectangle(personaje.posi * 20, personaje.posj * 20, 20, 20));
 
         }
 

@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1
             using (currentContext = BufferedGraphicsManager.Current)
             using (myBuffer = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle)) {
                     game.draw(myBuffer);
+                    game.PlayerSpaw(myBuffer);
 
                     myBuffer.Render(this.CreateGraphics());
             }
@@ -33,19 +34,18 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             game = new Game(myBuffer);
-            game.PlayerSpaw();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up)
-                game.PlayerMove(3);
+                game.PlayerMove(3, myBuffer);
             if (e.KeyCode == Keys.Left)
-                game.PlayerMove(2);
+                game.PlayerMove(2, myBuffer);
             if (e.KeyCode == Keys.Down)
-                game.PlayerMove(1);
+                game.PlayerMove(1, myBuffer);
             if (e.KeyCode == Keys.Right)
-                game.PlayerMove(4);
+                game.PlayerMove(4, myBuffer);
         }
     }
 }

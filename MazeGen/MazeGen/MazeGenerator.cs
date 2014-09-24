@@ -12,7 +12,7 @@ namespace MazeGen
         private int[,] maze;
         public int height { get; set; }
         public int width { get; set; }
-        Renderer renderer = new Renderer();
+        MazeRenderer renderer = new MazeRenderer();
 
         public MazeGenerator(int height, int width)
         {

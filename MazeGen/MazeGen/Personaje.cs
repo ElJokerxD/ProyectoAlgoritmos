@@ -12,16 +12,13 @@ namespace MazeGen
     {
         public int posi { get; set; }
         public int posj { get; set; }
-        Renderer renderer = new Renderer();
+        public Image Image4;
 
         public Personaje(int mazeHeight, int mazeWidth)
         {
             this.posj = ((mazeHeight + 1) / 2);
             this.posi = ((mazeWidth + 1) / 2);
-        }
-        public void draw(BufferedGraphics buffer)
-        {
-            renderer.draw(this, buffer);
+            Image4 = Image.FromFile(Directory.GetCurrentDirectory() + "\\derecha1.png");
         }
     }
 }
