@@ -74,10 +74,10 @@ namespace MazeGen
             //Haciendo un DFS con direcciones random se pasea por todos los nodos
             //creando las paredes del laberinto
             List<int> pool = new List<int>{0,1,2,3};
-            maze[CellY,CellX] = 0;
+            maze[CellY, CellX] = 0;
             for (int i = 0; i < 4; i++)
             {
-                switch (randomDirection(ref pool))
+                switch (randomDirectionCircular(ref pool,CellY,CellX))
                 {
                     case 0:
                         if (!checkVisited(CellY, CellX - 2))
@@ -131,6 +131,52 @@ namespace MazeGen
             Random direction = new Random(Guid.NewGuid().GetHashCode());
             int random = direction.Next(0,pool.Count());
             int poolNumber = pool[random];
+            pool.RemoveAt(random);
+            return poolNumber;
+        }
+        private int randomDirectionUp(ref List<int> pool)
+        {
+            Random direction = new Random(Guid.NewGuid().GetHashCode());
+            if (pool.Count() == 4)
+            {
+                pool.Remove(3);
+                return 3;
+            }
+
+            int random = direction.Next(0, pool.Count());
+            int poolNumber = pool[random];
+            pool.RemoveAt(random);
+            return poolNumber;
+        }
+        private int randomDirectionCircular(ref List<int> pool, int CellY, int CellX)
+        {
+            int random; 
+            int poolNumber;
+            Random direction = new Random(Guid.NewGuid().GetHashCode());
+            if (CellY < (height / 2) && CellX > (width / 2) && pool.Count() == 4)
+            {
+                pool.Remove(1);
+                return 1;
+            }
+            
+            if (CellY < (height / 2) && CellX < (width / 2) && pool.Count() == 4)
+            {
+                pool.Remove(0);
+                return 0;
+            }
+            if (CellY > (height / 2) && CellX < (width / 2) && pool.Count() == 4)
+            {
+                pool.Remove(3);
+                return 3;
+            }
+            if (CellY > (height / 2) && CellX > (width / 2) && pool.Count() == 4)
+            {
+                pool.Remove(2);
+                return 2;
+            }
+
+            random = direction.Next(0, pool.Count());
+            poolNumber = pool[random];
             pool.RemoveAt(random);
             return poolNumber;
         }

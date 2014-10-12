@@ -14,6 +14,8 @@ namespace MazeGen
             MazeGenerator maze = new MazeGenerator(51,101);
             int[,] playArea = maze.generateMaze(1, 1);
             maze.Print();
+
+
         }
     }
 }
