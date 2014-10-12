@@ -12,7 +12,6 @@ namespace MazeGen
     {
         public int posi { get; set; }
         public int posj { get; set; }
-        Renderer renderer = new Renderer();
 
         public Personaje(int mazeHeight, int mazeWidth)
         {
@@ -21,7 +20,7 @@ namespace MazeGen
         }
         public void draw(BufferedGraphics buffer)
         {
-            renderer.draw(this, buffer);
+            Renderer.draw(this, buffer);
         }
     }
 }

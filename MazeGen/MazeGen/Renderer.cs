@@ -8,28 +8,20 @@ using System.IO;
 
 namespace MazeGen
 {
-    public class Renderer
+    public static class Renderer
     {
-        Image Image1;
-        Image Image2;
-        Image Image3;
-        Image Image4;
-
-        public Renderer()
-        {
-            Image2 = MazeGen.Properties.Resources.piso;
-            Image1 = MazeGen.Properties.Resources.pared;
-            Image3 = MazeGen.Properties.Resources.pared1;
-            Image4 = MazeGen.Properties.Resources.derecha1;
-        }
-
-        public void draw(Personaje personaje, BufferedGraphics buffer)
+        static Image Image1 = MazeGen.Properties.Resources.pared;
+        static Image Image2 = MazeGen.Properties.Resources.piso;
+        static Image Image3 = MazeGen.Properties.Resources.pared1;
+        static Image Image4 = MazeGen.Properties.Resources.derecha1;
+        
+        public static void draw(Personaje personaje, BufferedGraphics buffer)
         {
             buffer.Graphics.DrawImage(Image4, new Rectangle(personaje.posi * 20, personaje.posj * 20, 20, 20));
         }
 
 
-        public void draw(MazeGenerator maze, BufferedGraphics buffer, int[,] mazeArray)
+        public static void draw(MazeGenerator maze, BufferedGraphics buffer, int[,] mazeArray)
         {
 
             for (int i = 0; i < maze.height; i++)

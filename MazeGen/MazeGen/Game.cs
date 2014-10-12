@@ -10,7 +10,6 @@ namespace MazeGen
     public class Game
     {
         private MazeGenerator maze = new MazeGenerator(33, 25);
-        private Renderer renderer = new Renderer();
         private Personaje personaje = new Personaje(33,25);              
 
         public Game() {

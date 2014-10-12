@@ -12,7 +12,6 @@ namespace MazeGen
         private int[,] maze;
         public int height { get; set; }
         public int width { get; set; }
-        Renderer renderer = new Renderer();
 
         public MazeGenerator(int height, int width)
         {
@@ -134,20 +133,6 @@ namespace MazeGen
             pool.RemoveAt(random);
             return poolNumber;
         }
-        private int randomDirectionUp(ref List<int> pool)
-        {
-            Random direction = new Random(Guid.NewGuid().GetHashCode());
-            if (pool.Count() == 4)
-            {
-                pool.Remove(3);
-                return 3;
-            }
-
-            int random = direction.Next(0, pool.Count());
-            int poolNumber = pool[random];
-            pool.RemoveAt(random);
-            return poolNumber;
-        }
         private int randomDirectionCircular(ref List<int> pool, int CellY, int CellX)
         {
             int random; 
@@ -182,7 +167,7 @@ namespace MazeGen
         }
         public void draw(BufferedGraphics buffer)
         {
-            renderer.draw(this, buffer, maze);
+            Renderer.draw(this, buffer, maze);
         }
         public int[,] getMaze()
         {
