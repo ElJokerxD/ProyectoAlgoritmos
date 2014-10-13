@@ -42,13 +42,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enemy.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="MazeGenerator.cs" />
-    <Compile Include="MazeRenderer.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Renderer.cs" />
+    <Compile Include="Personaje.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\derecha1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pared.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pared1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gatopulpo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gatopulpo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

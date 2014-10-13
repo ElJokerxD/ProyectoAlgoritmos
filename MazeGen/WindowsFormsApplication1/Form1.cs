@@ -15,59 +15,64 @@ namespace WindowsFormsApplication1
     {
         BufferedGraphicsContext currentContext;
         BufferedGraphics myBuffer;
-        MazeGenerator maze = new MazeGenerator(33,25);
+        Game game;
         int cont;
-
+        bool pasa=false;
+        public static int maxw = Screen.PrimaryScreen.Bounds.Width;
+        public static int maxh = Screen.PrimaryScreen.Bounds.Height;
+        
         public Form1()
         {
             InitializeComponent();
-            InitializeBuffer();
-
         }
-        public void InitializeBuffer()
+
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            cont = 0;
-            currentContext = BufferedGraphicsManager.Current;
-            myBuffer = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
-            maze.generateMaze(1, 1);
-            maze.draw(myBuffer);
-            maze.PlayerGenerator(myBuffer);
-            maze.PlayerSpaw(myBuffer);
-
-
-        }
-
-            private void timer1_Tick(object sender, EventArgs e)
+            using (currentContext = BufferedGraphicsManager.Current)
+            using (myBuffer = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle))
             {
+                game.draw(myBuffer);
                 myBuffer.Render(this.CreateGraphics());
-                cont++;
-                if (cont % 20 == 0)
-                {
-                    maze.generateMaze(1, 1);
-                    maze.draw(myBuffer);             
-                    maze.PlayerSpaw(myBuffer);
-                }
             }
+
+            cont++;
+            if(!pasa)
+            {
+                game.Enemymove();
+                pasa = true;
+                
+            }
+            if(cont==2500)
+            {
+                cont = 0;
+                game.reset(myBuffer);
+
+            }
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            game = new Game();
+            game.PlayerGenerator();
+            game.PlayerSpaw();
+            game.givematriz();
+            game.EnemySpawn();
+            //game.Enemymove();
+            cont = 0;
         }
-        
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up)
-                maze.PlayerMove(3, myBuffer);
+                game.PlayerMove(3);
             if (e.KeyCode == Keys.Left)
-                maze.PlayerMove(2, myBuffer);
+                game.PlayerMove(2);
             if (e.KeyCode == Keys.Down)
-                maze.PlayerMove(1, myBuffer);
+                game.PlayerMove(1);
             if (e.KeyCode == Keys.Right)
-                maze.PlayerMove(4, myBuffer);
-            myBuffer.Render(this.CreateGraphics());
-
+                game.PlayerMove(4);
             
-        }
 
-    }
+        }
+     }
 }
