@@ -165,9 +165,9 @@ namespace MazeGen
             pool.RemoveAt(random);
             return poolNumber;
         }
-        public void draw(BufferedGraphics buffer)
+        public void draw(Renderer renderer, BufferedGraphics buffer)
         {
-            Renderer.draw(this, buffer, maze);
+            renderer.draw(this, buffer, maze);
         }
         public int[,] getMaze()
         {

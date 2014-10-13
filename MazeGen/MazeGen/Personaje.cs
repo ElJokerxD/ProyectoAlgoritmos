@@ -18,9 +18,9 @@ namespace MazeGen
             this.posj = ((mazeHeight + 1) / 2);
             this.posi = ((mazeWidth + 1) / 2);
         }
-        public void draw(BufferedGraphics buffer)
+        public void draw(Renderer renderer, BufferedGraphics buffer)
         {
-            Renderer.draw(this, buffer);
+            renderer.draw(this, buffer);
         }
     }
 }
