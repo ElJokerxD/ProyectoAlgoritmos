@@ -12,8 +12,10 @@ namespace MazeGen
         private MazeGenerator maze = new MazeGenerator(33, 25);
         private Renderer renderer = new Renderer();
         private Personaje personaje = new Personaje(33,25);
-
+  
+        private List<Enemy> enemys = new List<Enemy>();
         private List<bala> balas = new List<bala>();
+
         int indicador;
         int ind_pu;
         public bool crea1 { get; set; }
@@ -74,6 +76,7 @@ namespace MazeGen
         {
             maze.draw(renderer, buffer);
             personaje.draw(renderer, buffer);
+            this.enemysdraw(buffer);
             if (crea1 == true)
             {
                 bulletdraw(buffer);
@@ -162,19 +165,99 @@ namespace MazeGen
             balas[indicador].by = personaje.posj;
             balas[indicador].bx = personaje.posi;
         }
+        //=============Enemy================
         //==================================
+       
+        public void EnemySpawn()
+        {
+            enemys.Last().enemyspawn();
+        }
+        public void Enemymove()
+        {
+            
+            enemys.Last().localization();
+        }
+        public void enemysdraw(BufferedGraphics buffer)
+        {
+            for (int i = 0; i < enemys.Count(); i++)
+            {
+                enemys[i].draw(renderer,buffer);
+            }
+        }
+        public void RadomspawnEnemy()
+        {
+             List<int> pool = new List<int>{0,1,2,3};
+            Random r=new Random();
+            Enemy enemy;
+            int aux=r.Next(0,4);
+            int aux2=r.Next(12,22);
+            switch (aux)
+            {
+                case 0:
+                    {
+                        enemy = new Enemy(1, aux2);
+                        enemys.Add(enemy);
+                    }
+                    break;
+                case 1:
+                    {
+                        enemy = new Enemy(aux2, 32);
+                        enemys.Add(enemy);
+                    }
+                    break;
+                case 2:
+                    {
+                        enemy = new Enemy(22, aux2);
+                        enemys.Add(enemy);
+                    }
+                    break;
+                case 3:
+                    {
+                        enemy = new Enemy(aux2, 1);
+                        enemys.Add(enemy);
+                    }
+                    break;
+            }
+        }
+        public void givemaze()
+        {
+            int[,] aux = new int[maze.height, maze.width];
+            // maze.getMaze().CopyTo(aux, 0);
+            Array.Copy(maze.getMaze(), aux, maze.getMaze().Length);
+            enemys.Last().getmaze(aux, personaje.posi, personaje.posj);
+        }
 
+        public void enemyup()
+        {
+            for (int i = 0; i < enemys.Count(); i++)
+            {
+                enemys[i].move();
+            }
+        }
+        
+        public void enemyplayermove(int i,int j)
+        {
+            for (int x = 0; x < enemys.Count(); x++)
+            {
+                enemys[x].saveplayermove(i,j);
+            }
+        }
+        //==================================
+       
         public void PlayerSpaw()
         {
-            for (int i = -1; i < 2; i++)
+            if (maze.getMaze()[personaje.posi, personaje.posj] == 2)
             {
-                for (int j = -1; j < 2; j++)
+                for (int i = -1; i < 2; i++)
                 {
-                    if (maze.getMaze()[personaje.posi+ i, personaje.posj + j] == 0)
+                    for (int j = -1; j < 2; j++)
                     {
-                        personaje.posi = personaje.posi + i;
-                        personaje.posj = personaje.posj + j;
-                        return;
+                        if (maze.getMaze()[personaje.posi+ i, personaje.posj + j] == 0)
+                        {
+                            personaje.posi = personaje.posi + i;
+                            personaje.posj = personaje.posj + j;
+                            return;
+                        }
                     }
                 }
             }
@@ -211,6 +294,7 @@ namespace MazeGen
                 default:
                     break;
             }
+            this.enemyplayermove(personaje.posi, personaje.posj);
 
         }
 

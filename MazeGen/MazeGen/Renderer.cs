@@ -48,6 +48,11 @@ namespace MazeGen
             buffer.Graphics.DrawImage(Ibala, new Rectangle(powerup.getX() * 20, (powerup.getY()) * 20, 20, 20));
 
         }
+        public void draw(Enemy enemy, BufferedGraphics buffer)
+        {
+            buffer.Graphics.DrawImage(Ibala, new Rectangle(enemy.posi * 20, enemy.posj * 20, 20, 20));
+
+        }
        
         public void draw(MazeGenerator maze, BufferedGraphics buffer, int[,] mazeArray)
         {

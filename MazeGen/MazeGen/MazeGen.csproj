@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="bala.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="MazeGenerator.cs" />
     <Compile Include="powerup.cs" />
