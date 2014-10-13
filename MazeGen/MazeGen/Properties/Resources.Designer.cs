@@ -89,7 +89,14 @@ namespace MazeGen.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+        internal static System.Drawing.Bitmap bullet
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("bullet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -99,5 +106,7 @@ namespace MazeGen.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        //public static System.Drawing.Image bullet { get; set; }
     }
 }

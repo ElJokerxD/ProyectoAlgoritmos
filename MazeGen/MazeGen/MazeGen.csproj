@@ -42,8 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bala.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="MazeGenerator.cs" />
+    <Compile Include="powerup.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
